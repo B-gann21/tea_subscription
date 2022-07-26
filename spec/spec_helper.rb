@@ -13,7 +13,7 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'webmomck/rspec'
+require 'webmock/rspec'
 require 'simplecov'
 SimpleCov.start
 
