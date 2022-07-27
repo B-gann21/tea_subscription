@@ -15,4 +15,19 @@ RSpec.describe Subscription do
     it { should validate_presence_of :frequency }
     it { should define_enum_for(:frequency).with_values([:weekly, :biweekly, :monthly]) } 
   end
+
+  context 'class methods' do
+    it ".build_from_request builds but doesn't save a Subscription" do
+      customer = FactoryBot.create(:customer)
+      tea = FactoryBot.create(:tea)
+      hash = { tea_id: tea.id, frequency: 'monthly' }
+      
+      subscription = Subscription.build_from_request(hash, customer.id)
+      expected_title = "#{customer.name}'s Monthly #{tea.name}" 
+      expect(subscription).to be_a Subscription
+      expect(subscription.title).to eq expected_title 
+      expect(subscription.price).to eq 1500
+      expect(subscription.id).to be_nil
+    end
+  end
 end
