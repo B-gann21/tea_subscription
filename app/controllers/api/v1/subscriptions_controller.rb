@@ -4,8 +4,12 @@ class Api::V1::SubscriptionsController < ApplicationController
     customer = Customer.find(params[:customer_id])
     tea = Tea.find(body[:tea_id])
 
-    subscription = Subscription.build_from_request(body[:frequency], customer, tea)
-    subscription.save
-    render json: Api::V1::SubscriptionSerializer.show(subscription), status: 201
+    if !["weekly", "biweekly", "monthly"].include?(body[:frequency])
+      render json: { 'error': 'invalid frequency' }, status: 404
+    else
+      subscription = Subscription.build_from_request(body[:frequency], customer, tea)
+      subscription.save
+      render json: Api::V1::SubscriptionSerializer.show(subscription), status: 201
+    end
   end
 end
