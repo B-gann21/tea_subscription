@@ -28,5 +28,22 @@ RSpec.describe Subscription do
       expect(subscription.price).to eq 1500
       expect(subscription.id).to be_nil
     end
+
+    context '.get_price(frequency) calculates price based on frequency' do
+      it 'monthly is 1500' do
+        price = Subscription.get_price('monthly')
+        expect(price).to eq 1500
+      end
+
+      it 'biweekly is 800' do
+        price = Subscription.get_price('biweekly')
+        expect(price).to eq 800
+      end
+
+      it 'weekly is 500' do
+        price = Subscription.get_price('weekly')
+        expect(price).to eq 500
+      end
+    end
   end
 end
