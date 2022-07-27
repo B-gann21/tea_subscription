@@ -7,4 +7,25 @@ class Subscription < ApplicationRecord
 
   enum status: [:cancelled, :active]
   enum frequency: [:weekly, :biweekly, :monthly]
+
+  def self.build_from_request(frequency, customer, tea)
+    hash = {
+      customer_id: customer.id,
+      tea_id: tea.id,
+      frequency: frequency,
+      title: "#{customer.first_name}'s #{frequency.capitalize} #{tea.title}",
+      status: 'active'
+    }
+
+    case frequency
+      when "monthly"
+        hash[:price] = 1500
+      when "biweekly"
+        hash[:price] = 800
+      when "weekly"
+        hash[:price] = 500
+    else; end
+
+    new(hash)
+  end
 end
