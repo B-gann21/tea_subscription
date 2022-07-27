@@ -8,7 +8,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
 
       post "/api/v1/customers/#{customer.id}/subscriptions",
         headers: {'Content-Type': 'application/json'},
-        params: JSON.generate({'tea_id': tea.id, frequency: "monthly" })
+        params: JSON.generate({tea_id: tea.id, frequency: "monthly" })
 
       expect(response).to be_successful
       expect(response).to have_http_status 201
@@ -42,7 +42,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
       tea = FactoryBot.create(:tea)
       post '/api/v1/customers/1000/subscriptions',
         headers: {'Content-Type': 'application/json'},
-        params: JSON.generate({'tea_id': tea.id, frequency: "monthly" })
+        params: JSON.generate({tea_id: tea.id, frequency: "monthly" })
 
       expect(response).to_not be_successful
       expect(response).to have_http_status 404
@@ -57,7 +57,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
       customer = FactoryBot.create(:customer)
       post "/api/v1/customers/#{customer.id}/subscriptions",
         headers: {'Content-Type': 'application/json'},
-        params: JSON.generate({'tea_id': 1000, frequency: "monthly" })
+        params: JSON.generate({tea_id: 1000, frequency: "monthly" })
 
       expect(response).to_not be_successful
       expect(response).to have_http_status 404
@@ -74,7 +74,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
 
       post "/api/v1/customers/#{customer.id}/subscriptions",
         headers: {'Content-Type': 'application/json'},
-        params: JSON.generate({'tea_id': tea.id, frequency: "skibbity bop mm dada" })
+        params: JSON.generate({tea_id: tea.id, frequency: "skibbity bop mm dada" })
       
       expect(response).to_not be_successful
       expect(response).to have_http_status 404

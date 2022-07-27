@@ -13,7 +13,8 @@ class Subscription < ApplicationRecord
       customer_id: customer.id,
       tea_id: tea.id,
       frequency: frequency,
-      title: "#{customer.first_name}'s #{frequency.capitalize} #{tea.title}"
+      title: "#{customer.first_name}'s #{frequency.capitalize} #{tea.title}",
+      status: 'active'
     }
     subscription = new(hash)
 

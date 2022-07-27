@@ -5,7 +5,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     tea = Tea.find(body[:tea_id])
 
     subscription = Subscription.build_from_request(body[:frequency], customer, tea)
-
-    render json: Api::V1::SubscriptionSerializer.show(subscription)
+    subscription.save
+    render json: Api::V1::SubscriptionSerializer.show(subscription), status: 201
   end
 end
