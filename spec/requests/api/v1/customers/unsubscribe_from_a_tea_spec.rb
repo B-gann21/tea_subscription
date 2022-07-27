@@ -5,7 +5,13 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
     it 'returns JSON showing the cancelled subscription' do
       customer = FactoryBot.create(:customer)
       tea = FactoryBot.create(:tea)
-      customer.subscriptions.create!(tea_id: tea.id, frequency: 'monthly', price: 1500, title: 'cool title', status: 'active')
+      customer.subscriptions.create!(
+        tea_id: tea.id,
+        frequency: 'monthly',
+        price: 1500,
+        title: 'cool title',
+        status: 'active'
+      )
       subscription = Subscription.all.last
 
       delete "/api/v1/customers/#{customer.id}/subscriptions/#{subscription.id}"
@@ -41,7 +47,13 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
     it 'invalid subscription_id results in a 404' do
       customer = FactoryBot.create(:customer)
       tea = FactoryBot.create(:tea)
-      customer.subscriptions.create!(tea_id: tea.id, frequency: 'monthly', price: 1500, title: 'cool title', status: 'active')
+      customer.subscriptions.create!(
+        tea_id: tea.id,
+        frequency: 'monthly',
+        price: 1500,
+        title: 'cool title',
+        status: 'active'
+      )
       subscription = Subscription.all.last
 
       delete "/api/v1/customers/#{customer.id}/subscriptions/1000"
@@ -56,7 +68,13 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
     it 'invalid customer_id results in a 404' do
       customer = FactoryBot.create(:customer)
       tea = FactoryBot.create(:tea)
-      customer.subscriptions.create!(tea_id: tea.id, frequency: 'monthly', price: 1500, title: 'cool title', status: 'active')
+      customer.subscriptions.create!(
+        tea_id: tea.id,
+        frequency: 'monthly',
+        price: 1500,
+        title: 'cool title',
+        status: 'active'
+      )
       subscription = Subscription.all.last
 
       delete "/api/v1/customers/1000/subscriptions/#{subscription.id}"
