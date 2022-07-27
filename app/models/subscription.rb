@@ -16,17 +16,16 @@ class Subscription < ApplicationRecord
       title: "#{customer.first_name}'s #{frequency.capitalize} #{tea.title}",
       status: 'active'
     }
-    subscription = new(hash)
 
     case frequency
       when "monthly"
-        subscription.price = 1500
+        hash[:price] = 1500
       when "biweekly"
-        subscription.price = 800
+        hash[:price] = 800
       when "weekly"
-        subscription.price = 500
+        hash[:price] = 500
     else; end
 
-    subscription
+    new(hash)
   end
 end
