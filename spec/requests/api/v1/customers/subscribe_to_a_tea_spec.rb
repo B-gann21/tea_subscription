@@ -38,7 +38,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
   end
 
   context 'sad path' do
-    it 'invalid cuystomer id returns 404' do
+    it 'invalid customer id returns 404' do
       tea = FactoryBot.create(:tea)
       post '/api/v1/customers/1000/subscriptions',
         headers: {'Content-Type': 'application/json'},
@@ -50,7 +50,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
       full_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(full_response).to have_key :error
-      expect(full_response[:error]).to eq 'invalid customer_id or tea_id'
+      expect(full_response[:error]).to eq 'invalid id(s)'
     end
 
     it 'invalid tea id returns 404' do
@@ -65,7 +65,7 @@ RSpec.describe 'Subscribing a customer to a Tea' do
       full_response = JSON.parse(response.body, symbolize_names: true)
 
       expect(full_response).to have_key :error
-      expect(full_response[:error]).to eq 'invalid customer_id or tea_id'
+      expect(full_response[:error]).to eq 'invalid id(s)'
     end
 
     it 'frequency must be weekly, biweekly, or monthly' do

@@ -13,19 +13,22 @@ class Subscription < ApplicationRecord
       customer_id: customer.id,
       tea_id: tea.id,
       frequency: frequency,
+      price: get_price(frequency),
       title: "#{customer.first_name}'s #{frequency.capitalize} #{tea.title}",
       status: 'active'
     }
 
+    new(hash)
+  end
+
+  def self.get_price(frequency)
     case frequency
       when "monthly"
-        hash[:price] = 1500
+        1500
       when "biweekly"
-        hash[:price] = 800
+        800
       when "weekly"
-        hash[:price] = 500
+        500
     else; end
-
-    new(hash)
   end
 end
