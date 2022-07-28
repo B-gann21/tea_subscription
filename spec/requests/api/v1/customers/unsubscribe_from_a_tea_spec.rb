@@ -14,7 +14,7 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
       )
       subscription = Subscription.all.last
 
-      delete "/api/v1/customers/#{customer.id}/subscriptions/#{subscription.id}"
+      patch "/api/v1/customers/#{customer.id}/subscriptions/#{subscription.id}"
 
       expect(response).to be_successful
       expect(response).to have_http_status 202
@@ -56,7 +56,7 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
       )
       subscription = Subscription.all.last
 
-      delete "/api/v1/customers/#{customer.id}/subscriptions/1000"
+      patch "/api/v1/customers/#{customer.id}/subscriptions/1000"
       expect(response).to_not be_successful
       expect(response).to have_http_status 404
       
