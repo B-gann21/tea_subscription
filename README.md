@@ -32,8 +32,14 @@ Description:
 ## Database Schema:
 <img width="957" alt="Screen Shot 2022-07-25 at 2 04 27 PM" src="https://user-images.githubusercontent.com/94757433/180865194-e1c0ee64-75d9-4204-be71-0049e4840ce4.png">
 
+## Postman:
+- There is a postman collection for testing in development:
+  - copy this url `https://www.getpostman.com/collections/05e0a41732e51207f074`
+  - open up postman, and on the top left next to your workspace click `import`
+  - at the top of the import window click `link`, paste the above link
+  - click `continue` and you should see the new collection
 
-## Using the Endpoints (click to expand):
+## Available Endpoints (click to expand):
 <details>
   <summary><b/>Subscribe a customer to a tea subscription</b></summary>
   
