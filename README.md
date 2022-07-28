@@ -1,13 +1,39 @@
 # Tea Subscription Service - A take home challenge from Turing
-
+Description:
+- The task was to create a Tea Subscription API in 8 hours that has 3 endpoints:
+  - Subscribe a Customer to a Tea 
+  - Unsubscribe a Customer from a Tea
+  - View all of a Customer's Subscriptions (whether subscribed or not)
+- I decided to create 3 possible frequencies for a subscription, each with their own price:
+  - Weekly: $5
+  - Biweekly: $8
+  - Monthly: $15
+  
 ## Requirements:
-* You will create a Rails API for a Tea Subscription Service.
+- Ruby 2.7.4
+- Rails 5.2.8
+- Postgres 14.3
+- Bundler 2.3.8
+
+## Local Setup:
+- `fork` then `git clone` this repository
+- `cd` into the root directory
+- `bundle install` to install dependencies
+- `rails db:{create,migrate,seed}` to create a database and seed it with default data (found in config/seeds.rb)
+- `rails s` will boot up your local server on `localhost:3000`
+- You're all set to make some requests!
+
+## Running the test suite
+- This project uses RSpec to test functionality. All tests are in the `spec` folder
+  - running `bundle exec rspec` will run the full suite of 35 tests
+  - to run a single test file, run `bundle exec rspec spec/{path}/{to}/{file}`
+  - to view test coverage, you can run `open coverage/index.html` 
 
 ## Database Schema:
 <img width="957" alt="Screen Shot 2022-07-25 at 2 04 27 PM" src="https://user-images.githubusercontent.com/94757433/180865194-e1c0ee64-75d9-4204-be71-0049e4840ce4.png">
 
 
-## Endpoints (click to expand):
+## Using the Endpoints (click to expand):
 <details>
   <summary><b/>Subscribe a customer to a tea subscription</b></summary>
   
