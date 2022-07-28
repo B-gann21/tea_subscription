@@ -17,7 +17,7 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
       delete "/api/v1/customers/#{customer.id}/subscriptions/#{subscription.id}"
 
       expect(response).to be_successful
-      expect(response).to have_http_status 204
+      expect(response).to have_http_status 202
 
       full_response = JSON.parse(response.body, symbolize_names: true)
       expect(full_response).to have_key :data
@@ -62,28 +62,7 @@ RSpec.describe 'Unsibscribing a customer from a tea' do
       
       full_response = JSON.parse(response.body, symbolize_names: true)
       expect(full_response).to have_key :error
-      expect(full_response[:error]).to eq 'invalid customer_id or subscription_id'
-    end
-
-    it 'invalid customer_id results in a 404' do
-      customer = FactoryBot.create(:customer)
-      tea = FactoryBot.create(:tea)
-      customer.subscriptions.create!(
-        tea_id: tea.id,
-        frequency: 'monthly',
-        price: 1500,
-        title: 'cool title',
-        status: 'active'
-      )
-      subscription = Subscription.all.last
-
-      delete "/api/v1/customers/1000/subscriptions/#{subscription.id}"
-      expect(response).to_not be_successful
-      expect(response).to have_http_status 404
-      
-      full_response = JSON.parse(response.body, symbolize_names: true)
-      expect(full_response).to have_key :error
-      expect(full_response[:error]).to eq 'invalid customer_id or subscription_id'
+      expect(full_response[:error]).to eq 'invalid id(s)'
     end
   end
 end
