@@ -1,9 +1,9 @@
 class Api::V1::SubscriptionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :get_customer, only: [:create, :index]
   before_action(
     :parse_json,
     :validate_frequency,
-    :get_customer,
     :get_tea,
     only: :create
   )
@@ -19,6 +19,10 @@ class Api::V1::SubscriptionsController < ApplicationController
     subscription.status = 'cancelled'
     subscription.save
     render json: Api::V1::SubscriptionSerializer.show(subscription), status: 202
+  end
+
+  def index
+    render json: Api::V1::SubscriptionSerializer.index(@customer.subscriptions)
   end
 
   private
