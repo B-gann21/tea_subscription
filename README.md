@@ -42,7 +42,7 @@ Body:
 
 - If the customer_id or tea_id is invalid, then I see the following error with an HTTP status of 404:
 ```
-{ "error": "invalid customer_id or tea_id" }
+{ "error": "invalid id(s)" }
 ```
 
 - if the frequency is not "weekly", "biweekly", or "monthly", i see this error with an HTTP status of 400:
@@ -72,7 +72,7 @@ Body:
 
 - If the subscription_id is invalid, I see the following error with an HTTP status of 404:
 ```
-{ "error": "invalid subscription_id" }
+{ "error": "invalid id(s)" }
 ```
 </details>
 <br>
@@ -110,7 +110,7 @@ Body:
 
 - If the customer_id is invalid, i see this error with an HTTP status of 404:
 ```
-{ "error": "invalid customer_id" }
+{ "error": "invalid id(s)" }
 ```
 </details>
 
