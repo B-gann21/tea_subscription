@@ -80,7 +80,7 @@ Body:
 <details>
   <summary><b/>Cancel a customer’s tea subscription</b></summary>
   
-- When I send a DELETE request to `api/v1/customers/:customer_id/subscriptions/:subscription_id`, then I see the following response with an HTTP status of 204:
+- When I send a PATCH request to `api/v1/customers/:customer_id/subscriptions/:subscription_id`, then I see the following response with an HTTP status of 204:
 ```
 {
   "data": {
