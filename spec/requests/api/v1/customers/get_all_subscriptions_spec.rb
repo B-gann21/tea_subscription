@@ -47,7 +47,7 @@ RSpec.describe "Viewing all of a Customer's Subscriptions" do
         expect(sub_attributes).to have_key :price
         expect(sub_attributes[:price]).to be_an Integer
         expect(sub_attributes).to have_key :frequency
-        expect(sub_attributes[:frequency]).to eq be_a String
+        expect(sub_attributes[:frequency]).to be_a String
         expect(sub_attributes).to have_key :status
         expect(sub_attributes[:status]).to eq('active').or eq('cancelled')
       end
