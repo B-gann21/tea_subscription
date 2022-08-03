@@ -1,7 +1,5 @@
-version: 2.1 # Use 2.1 to enable using orbs and other features.
+version: 2.1
 
-# Declare the orbs that we'll use in our config.
-# read more about orbs: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   ruby: circleci/ruby@1.0
 
@@ -20,17 +18,8 @@ jobs:
     # here we set TWO docker images.
     docker:
       - image: cimg/ruby:2.7.4-node
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD
       - image: circleci/postgres:9.5-alpine
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD
-        environment: # add POSTGRES environment variables.
-          POSTGRES_USER: circleci-demo-ruby
-          POSTGRES_DB: rails_blog_test
-          POSTGRES_PASSWORD: ""
+
     # environment variables specific to Ruby/Rails, applied to the primary container.
     environment:
       BUNDLE_JOBS: "3"
@@ -43,11 +32,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      # - node/install-packages:
-      #     pkg-manager: yarn
-      #     cache-key: "yarn.lock"
-      # Here we make sure that the secondary container boots
-      # up before we run operations on the database.
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -57,7 +41,6 @@ jobs:
     
       - ruby/rspec-test
 
-# We use workflows to orchestrate the jobs that we declared above.
 workflows:
   version: 2
   build_and_test:     # The name of our workflow is "build_and_test"
